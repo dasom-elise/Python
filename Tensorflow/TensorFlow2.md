@@ -141,13 +141,13 @@ sess.run(H, feed_dict = {x:200})
 > ```
 >
 > ```python
-> # 이상치를 찾기위해서 Tukey Fence 방식을 이용(IRQ 방식 이용)
-> # IRQ = 3사분위 - 1사분위
-> # "IRQ * 1.5 + 3사분위"를 초과하는 값이 존재하면 이상치
-> # "1사분위 값 - IRQ * 1.5"의 미만의 값이 존재하면 이상치
+> # 이상치를 찾기위해서 Tukey Fence 방식을 이용(IQR 방식 이용)
+> # IQR = 3사분위 - 1사분위
+> # "IQR * 1.5 + 3사분위"를 초과하는 값이 존재하면 이상치
+> # "1사분위 값 - IQR * 1.5"의 미만의 값이 존재하면 이상치
 > q1,q3 = np.percentile(ps["Ozone"],[25,75])
-> irq = q3 - q1
-> upper = q3 + irq * 1.5
+> iqr = q3 - q1
+> upper = q3 + iqr * 1.5
 > mask = ps["Ozone"] > upper      # boolean indexing 활용
 > 
 > ps.loc[mask==False]
